@@ -1,7 +1,6 @@
 'use strict';
 
-
-angular.module('angular.media').service('$media',['mediaQueries', '$rootScope', '$window', 'debounce', function (mediaQueries, $rootScope, $window, debounce) {
+angular.module('angular.media').service('$media',['mediaQueries', '$rootScope', '$window', '$timeout', function (mediaQueries, $rootScope, $window, $timeout) {
 
     var predefinedQueriesStatus = {};
 
@@ -18,7 +17,7 @@ angular.module('angular.media').service('$media',['mediaQueries', '$rootScope', 
       }
     };
 
-    var onResize = debounce(function () {
+    var onResize = $timeout(function () {
       updatePredefinedMediaQueries();
       $rootScope.$apply();
     }, 400);
